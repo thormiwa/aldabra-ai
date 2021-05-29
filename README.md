@@ -1,4 +1,4 @@
-# AfricaHacks2020-Project-aldabra
+# Aldabra
 
 ## Virtual environment setup
   ## For Windows  
