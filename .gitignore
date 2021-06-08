@@ -125,8 +125,8 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
-secrets.json
-aldabra-env/
+#secrets.json
+aldabra-venv/
 
 # Spyder project settings
 .spyderproject

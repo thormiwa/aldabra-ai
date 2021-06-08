@@ -64,7 +64,7 @@ class BookAppointmentAPI(CreateAPIView):
 
         pk = response.data['id']
         appointment = Appointment.objects.get(id=pk)
-        url = appointment.get_notify_doctor_url()
+        url = appointment.get_start_thread_url()
 
         return redirect(url)
 

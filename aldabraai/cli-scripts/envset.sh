@@ -2,8 +2,8 @@
 
 pip3 install virtualenv
 
-virtualenv ../../aldabra-env
+virtualenv ../../aldabra-venv
 
-cd ../../ && source ./aldabra-env/bin/activate && cd ./aldabraai
+source ../../aldabra-env/bin/activate
 
-pip3 install -r ../../requirements.txt
+pip install -r /home/krummitz/aldabra-ai/requirements.txt

@@ -12,8 +12,7 @@ from ..models import Appointment
 #             'patient', 
 #             'booked_doctor_office',
 #             'appointment_for',
-#             'appointment_date',
-#             'appointment_time',
+#             'appointment_dt',
 #             'appointment_end_time',
 #             'short_note',
 #             'booking_channel',
@@ -33,8 +32,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
             'phone_number',
             'booked_doctor_office',
             'appointment_for',
-            'appointment_date',
-            'appointment_time',
+            'appointment_dt',
             'appointment_end_time',
             'short_note',
             'booking_channel',
@@ -54,14 +52,12 @@ class DoctorResaonSerializer(serializers.ModelSerializer):
 
 
 class RescheduleAppointmentSerializer(serializers.ModelSerializer):
-    appointment_date = serializers.DateField()
-    appointment_time = serializers.TimeField()
+    appointment_dt = serializers.DateField()
     
     class Meta:
         model = Appointment
         fields = [
-            'appointment_date',
-            'appointment_time',
+            'appointment_dt',
             'prep_nurse'
         ]
 
@@ -81,8 +77,7 @@ class BookedAppointmentSerializer(serializers.ModelSerializer):
             'patient', 
             'booked_doctor_office',
             'appointment_for',
-            'appointment_date',
-            'appointment_time',
+            'appointment_dt',
             'appointment_end_time',
             'short_note',
             'booking_channel',
@@ -96,8 +91,7 @@ class RequestedAppointmentSerializer(serializers.ModelSerializer):
             'patient', 
             'booked_doctor_office',
             'appointment_for',
-            'appointment_date',
-            'appointment_time',
+            'appointment_dt',
             'appointment_end_time',
             'short_note',
             'booking_channel',

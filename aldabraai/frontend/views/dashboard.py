@@ -2,7 +2,9 @@
 from django.views.generic import TemplateView
 
 # models
-from appointment.models import Appointment
+from appointment.models import (
+    Appointment
+)
 from authend.models import User
 
 # decorators
@@ -22,16 +24,11 @@ from django.shortcuts import (
 def dashboard(request):
     user = request.user
 
-    template_name = ''
-    context = {
-        
-    }
-
     if user.is_patient:
         template_name = 'dashboards/patient_dashboard.html'
 
         context = {
-            
+            'latest_appointments': Appointment.booked_appointments.filter(patient=user) 
         }
 
     elif user.is_doctor:

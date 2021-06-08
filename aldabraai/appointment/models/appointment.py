@@ -47,12 +47,16 @@ class Appointment(models.Model):
         ('OC', 'Call'),
     ]
 
+    NOTIFICATION_CHANNELS = [
+        ('SMS', 'SMS'),
+        ('EM', 'Email')
+    ]
+
     patient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='patient_appointments',on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20, blank=True)
     booked_doctor_office = models.ForeignKey(DoctorOffice, related_name='appointments', on_delete=models.CASCADE)
     appointment_for = models.CharField(max_length=500, blank=True)
-    appointment_date = models.DateField(blank=True, null=True)
-    appointment_time = models.TimeField(blank=True, null=True)
+    appointment_dt = models.DateTimeField('Appointment Date and Time',blank=True, null=True)
     appointment_end_time = models.TimeField(blank=True, null=True)
     appointment_state = models.CharField(max_length=10, choices=APPOINTMENT_STATE, default=APPOINTMENT_STATE[0][0])
     short_note = models.CharField(max_length=500, blank=True)
@@ -95,6 +99,9 @@ class Appointment(models.Model):
     def get_set_nurse_url(self):
         return reverse('appointments:set-prepnurse-detail', kwargs={'appointment_id': self.appointment_id})
 
+    def get_start_thread_url(self):
+        return reverse('appointments:start_thread', kwargs={'appointment_id': self.appointment_id})
+
     def get_accept_set_timer_url(self):
         return reverse('appointments:accept_set_timer', kwargs={'appointment_id': self.appointment_id})
 
@@ -122,6 +129,6 @@ class Appointment(models.Model):
     def get_patient_email(self):
         return self.patient.email
     class Meta:
-        ordering = ['-appointment_date']
+        ordering = ['-appointment_dt']
 
     

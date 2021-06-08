@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 
+    # SCHEDULING APP
+    'django_apscheduler',
+
     # icon library's
     #'fontawesome-free',
 
@@ -179,9 +182,9 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json', 
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'knox.auth.TokenAuthentication',
-         #'rest_framework.authentication.BasicAuthentication',
-         #'rest_framework.authentication.SessionAuthentication',
+        #'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+         'rest_framework.authentication.SessionAuthentication',
          #'rest_framework.authentication.TokenAuthentication',
      ],
 
@@ -265,3 +268,20 @@ BOOTSTRAP5 = {
         'inline': 'bootstrap5.renderers.InlineFieldRenderer',
     },
 }
+
+# APSCHEDULER SETTINGS
+# Format string for displaying run time timestamps in the Django admin site. The default
+# just adds seconds to the standard Django format, which is useful for displaying the timestamps
+# for jobs that are scheduled to run on intervals of less than one minute.
+# 
+# See https://docs.djangoproject.com/en/dev/ref/settings/#datetime-format for format string
+# syntax details.
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
+# Maximum run time allowed for jobs that are triggered manually via the Django admin site, which
+# prevents admin site HTTP requests from timing out.
+# 
+# Longer running jobs should probably be handed over to a background task processing library
+# that supports multiple background worker processes instead (e.g. Dramatiq, Celery, Django-RQ,
+# etc. See: https://djangopackages.org/grids/g/workers-queues-tasks/ for popular options).
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds

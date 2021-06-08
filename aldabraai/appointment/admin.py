@@ -7,10 +7,8 @@ class AppointmentAdmin(admin.ModelAdmin):
     list_display = [
         'patient',
         'booked_doctor_office',
-        'appointment_date',
         'appointment_for',
-        'appointment_date',
-        'appointment_time',
+        'appointment_dt',
         'appointment_end_time',
         'appointment_state',
         'appointment_status',
@@ -21,10 +19,8 @@ class AppointmentAdmin(admin.ModelAdmin):
     list_filter = [
         'patient',
         'booked_doctor_office',
-        'appointment_date',
         'appointment_for',
-        'appointment_date',
-        'appointment_time',
+        'appointment_dt',
         'appointment_end_time',
         'appointment_state',
         'appointment_status',
@@ -33,17 +29,15 @@ class AppointmentAdmin(admin.ModelAdmin):
 
     list_per_page = 1000
 
-    date_hierarchy = 'appointment_date'
+    date_hierarchy = 'appointment_dt'
 
-    time_hierarchy = 'appointment_time'
+    time_hierarchy = 'appointment_dt'
 
     search_fields = [
         'patient',
         'booked_doctor_office',
-        'appointment_date',
         'appointment_for',
-        'appointment_date',
-        'appointment_time',
+        'appointment_dt',
         'appointment_end_time',
         'appointment_state',
         'appointment_status',

@@ -3,13 +3,21 @@ import asyncio
 from asgiref.sync import sync_to_async
 
 from django.utils import timezone
+from django.conf import settings
 from django.utils.timezone import timedelta
+
+from apscheduler.schedulers.blocking import BlockingScheduler
+from django_apscheduler.jobstores import DjangoJobStore
+from django_apscheduler.models import DjangoJobExecution
+from apscheduler.triggers.cron import CronTrigger
 
 # COMMON
 from django.shortcuts import (
     redirect, 
-    get_object_or_404
+    get_object_or_404,
 )
+
+from django.urls import reverse
 from django.core.mail import EmailMultiAlternatives
 from django.http.response import Http404
 
@@ -29,9 +37,9 @@ def sendEmailNotification(subject, email_address, sender, html_con, text_con=Non
     msg.send()
 
 ## Send Email Notification To Doctor on Appointment Request
-def notifyDoctor(request, appointment_id):
+def notifyDoctor(*args, **kwargs):
     ## get appointment and doctors email, well you should know that
-    appointment = get_object_or_404(Appointment, appointment_id=appointment_id)
+    appointment = get_object_or_404(Appointment, appointment_id=kwargs['appointment_id'])
     email_address = appointment.get_doctor_email
 
     ## appointment detail url
@@ -43,7 +51,7 @@ def notifyDoctor(request, appointment_id):
         'email_address': email_address,
 
         'text': "Someone Requested an Appointment with you, please review it here",
-        'html': f"<p>Someone Requested an Appointment with you, please review it <a href='{appointment_url}'>here</a></p>",
+        'html': f"<p>Someone Requested an Appointment with you, please review it <a href='https://127.0.0.1:3000/{appointment_url}'>here</a></p>",
         'sender': 'amidbidee@gmail.com'
     }
 
@@ -70,8 +78,7 @@ def acceptSetTimer(request, appointment_id):
                appointment.booked = True
                appointment.save()
 
-           date = appointment.appointment_date
-           time = appointment.appointment_time
+           dt = appointment.appointment_dt
 
            ## THIS IS FOR DEVELOPMENT PURPOSE USING DJANGO SMTP MAIL TOOL
            Mail_List = {
@@ -83,29 +90,25 @@ def acceptSetTimer(request, appointment_id):
 
                'text1': f"""
                                  An Appointment as been set for 
-                                 date:'{date}', 
-                                 time:'{time}'
+                                 date:'{dt}'
                         """,
                'html1': f"""
                                  <p>
                                  An Appointment as been set for;
-                                 date:'{date}', 
-                                 time:'{time}'
+                                 date:'{dt}'
                                  </p>
                         """,
 
                'text2': f"""
                                  Your Appointment has been accepted and successfully booked.
                                  Appointment as been set for;
-                                 date:'{date}', 
-                                 time:'{time}'
+                                 date:'{dt}', 
                         """,
                'html2': f"""
                                  <p>
                                  Your Appointment has been accepted and successfully booked.
                                  Appointment as been set for;
-                                 date:'{date}', 
-                                 time:'{time}'
+                                 date:'{dt}'
                                  </p>
                         """,
            }
@@ -124,7 +127,7 @@ def acceptSetTimer(request, appointment_id):
        except appointment.DoesNotExist:
            return Http404
 
-    return redirect('home')
+    return redirect('appointment:dashboard')
 
 
 def declineDelete(request, appointment_id):
@@ -167,7 +170,21 @@ def get_appointment(request, appointment_id):
     appointment = Appointment.objects.get(appointment_id=appointment_id)
     return appointment
 
+def delete_old_job_executions(max_age=604_800):
+    """This job deletes all apscheduler job executions older than `max_age` from the database."""
+    DjangoJobExecution.objects.delete_old_job_executions(max_age)
 
+def start_appointment_thread(*args, **kwargs):
+    s = BlockingScheduler(timezone=settings.TIME_ZONE)
+    s.add_jobstore(DjangoJobStore(), 'default')
+    appointment = get_object_or_404(Appointment, appointment_id=kwargs['appointment_id'])
 
-    
-
+    if appointment.appointment_dt < timezone.now():
+        s.add_job(notifyDoctor, 
+        trigger=CronTrigger(start_date=appointment.appointment_dt, timezone=settings.TIME_ZONE), 
+        id='new_appointment',
+        max_instances=1,
+        replace_existing=True,
+        kwargs={'appointment_id': kwargs['appointment_id']}
+        )
+        s.start()

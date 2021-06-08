@@ -22,7 +22,8 @@ from .api import (
 ## FBVs
 from .views import (
     notifyDoctor, 
-    acceptSetTimer
+    acceptSetTimer,
+    start_appointment_thread
     )
 
 app_name = 'appointments'
@@ -38,7 +39,8 @@ urlpatterns = [
     path('notify-doctor/<appointment_id>/', notifyDoctor, name='notify_doctor'),
     path('accept-set-timer/<appointment_id>/', acceptSetTimer, name='accept_set_timer'),
     path('booked/', BookedAppointmentsAPI.as_view(), name='booked'),
-    path('requested/', RequestedAppointmentsAPI.as_view(), name='requested')
+    path('requested/', RequestedAppointmentsAPI.as_view(), name='requested'),
+    path('start_thread/<appointment_id>/', start_appointment_thread, name='start_thread')
 ]
 
 urlpatterns += router.urls
