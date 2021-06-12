@@ -164,4 +164,4 @@ node_modules
 
 # Local History for Visual Studio Code
 .history/
-aldabraai/secrets.json
+secret.json
