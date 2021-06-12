@@ -125,7 +125,6 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
-secrets.json
 aldabra-venv/
 
 # Spyder project settings
@@ -165,3 +164,4 @@ node_modules
 
 # Local History for Visual Studio Code
 .history/
+aldabraai/secrets.json

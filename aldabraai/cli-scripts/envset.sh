@@ -1,9 +1,9 @@
+#!/bin/bash
 
-
-pip3 install virtualenv
+#pip install virtualenv
 
 virtualenv ../../aldabra-venv
 
-source ../../aldabra-env/bin/activate
+source /home/krummitz/projects/aldabra-ai/aldabra-venv/bin/activate
 
-pip install -r /home/krummitz/aldabra-ai/requirements.txt
+pip install -r ../../requirements.txt
