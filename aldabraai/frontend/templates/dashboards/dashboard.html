@@ -25,9 +25,21 @@
         {% endblock %}
 
         {% block user-space %}
+        {% if user.gender == 'F' %}
         <div class='user-space'>
             <img src="{% static 'imgs/female-user.jpg' %}" alt="" class='user'>
         </div>
+
+        {% elif user.gender == 'M' %}
+        <div class='user-space'>
+            <img src="{% static 'imgs/male-user.jpg' %}" alt="" class='user'>
+        </div>
+
+        {% else %}
+        <div class='user-space'>
+            <img src="{% static 'imgs/male-user.jpg' %}" alt="" class='user'>
+        </div>
+        {% endif %}
         {% endblock %}
     </header>
     {% endblock app-bar %}

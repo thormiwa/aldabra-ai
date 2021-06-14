@@ -13,10 +13,10 @@ app_name = 'aldabra.ai'
 ## API(s) entry points
 apis = [
     path('base/', include('base.urls')),
-    path('appointments/', include('appointment.urls', namespace='appointments')),
-    path('hospitals/', include('hospitaldb.urls', namespace='hospitals')),
-    path('accounts/', include('account.urls', namespace='accounts')),
-    path('auth/', include('authend.urls')),
+    path('appointments/', include('appointments.urls', namespace='appointments')),
+    path('hospitals/', include('hospitals.urls', namespace='hospitals')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('auth/', include('auths.urls')),
 ]
 
 urlpatterns = [
@@ -25,5 +25,5 @@ urlpatterns = [
     # API ENTRY version one --> DONT PLAY WITH THIS OR WE LOSE DATA
     path('api/v1/', include(apis)),
     path('admin/', admin.site.urls),
-    path('auth/', include('authend.urls'))
+    path('auth/', include('auths.urls'))
 ]

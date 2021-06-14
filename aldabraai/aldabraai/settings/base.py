@@ -30,18 +30,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     ## OWN APP(s) 
-    # AUTH END
-    'authend.apps.AuthendConfig',
+    # AUTHENTIFICATION
+    'auths.apps.AuthsConfig',
 
     # COMMON
     'base.apps.BaseConfig',
-    'account.apps.AccountConfig',
-    'hospitaldb.apps.HospitaldbConfig',
+    'accounts.apps.AccountsConfig',
+    'hospitals.apps.HospitalsConfig',
 
     # FEATURE(s)
     'dashboard.apps.DashboardConfig',
-    'appointment.apps.AppointmentConfig',
-    'queuein.apps.QueueinConfig',
+    'appointments.apps.AppointmentsConfig',
+    'queues.apps.QueuesConfig',
     'mhealth.apps.MhealthConfig',
     'search.apps.SearchConfig',
 
@@ -84,7 +84,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 ## REFRENCING USER MODEL
-AUTH_USER_MODEL = 'authend.User'
+AUTH_USER_MODEL = 'auths.User'
 
 ## ROOT URL
 ROOT_URLCONF = 'aldabraai.urls'

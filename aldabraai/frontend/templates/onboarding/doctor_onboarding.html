@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'frontend:onboarding' %}" method="POST">
+        {% csrf_token %}
+        {{ verification_form.as_p }}
+        <input type="submit" value="verify" class="join btn">
+    </form>
+{% endblock content %}

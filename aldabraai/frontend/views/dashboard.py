@@ -1,11 +1,16 @@
 # django generic view classes
 from django.views.generic import TemplateView
 
-# models
-from appointment.models import (
+## models
+from appointments.models import (
     Appointment
 )
-from authend.models import User
+from auths.models import User
+# user account models
+from accounts.models import (
+    Patient,
+    Doctor
+) 
 
 # decorators
 from django.contrib.auth.decorators import (
@@ -28,6 +33,8 @@ def dashboard(request):
         template_name = 'dashboards/patient_dashboard.html'
 
         context = {
+            'user': user,
+            'patient': Patient.objects.get(owner=user),
             'latest_appointments': Appointment.booked_appointments.filter(patient=user) 
         }
 
@@ -35,7 +42,8 @@ def dashboard(request):
         template_name = 'dashboards/doctor_dashboard.html'
         
         context = {
-
+            'user': user,
+            'doctor': Doctor.objects.get(owner=user)
         }
         
     return render(request, template_name, context)

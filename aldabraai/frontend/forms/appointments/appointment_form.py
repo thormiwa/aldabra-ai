@@ -4,7 +4,7 @@ from appointment.models import Appointment
 
 # form queryset models
 from authend.models import User
-from hospitaldb.models import DoctorOffice
+from hospitals.models import DoctorOffice
 
 # common
 from django import forms
