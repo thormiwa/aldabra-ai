@@ -19,10 +19,9 @@
   ````
   
   ## For Linux(Ubuntu)
-    chmod 7 envset.sh
-    
+  ```
     ./envset
-    
+  ```
  ## Database setup
   ## Windows
   Run following scripts in admin windows **powershell**
@@ -46,37 +45,8 @@
   
   ## Linux(Ubuntu)
   ````
-  chmod 7 runsever.sh
-  
   ./runserver
   ````
-  
-## React Frontend
-   the react frontend was manually integrated into the django application
-   it lives in 
-   ````
-   .\frontend
-   ````
-   there you'll find the **\src** folder etc
-   
-   **main.js** lives in
-   ````
-   .\frontend\static\frontend\public
-   ````
-   html templates lives in
-   ````
-   .\frontend\templates\
-   ````
-   there you can adjust template structure or add all html files
-   
-   since the react was manually integrated, you can only run
-   ````
-   npm run-scripts dev
-   ````
-   or
-   ````
-   npm run-scripts build
-   ````   
 
 **Happy Hacking (o_o)**
    
