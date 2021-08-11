@@ -25,3 +25,4 @@ fontawesome-free == 5.15.3
 django-bootstrap-v5
 apscheduler >= 3.7.0
 django-apscheduler
+pytest
