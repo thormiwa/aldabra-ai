@@ -27,7 +27,9 @@
         {% block user-space %}
         {% if user.gender == 'F' %}
         <div class='user-space'>
-            <img src="{% static 'imgs/female-user.jpg' %}" alt="" class='user'>
+            {% block user-image %} 
+                <img src="{% static 'imgs/female-user.jpg' %}" alt="" class='user'>
+            {% endblock user-image %}
         </div>
 
         {% elif user.gender == 'M' %}
@@ -67,13 +69,13 @@
             {% block content-box %}
             <div class="card c-box">
                 <div class='c-u-space'>   
-                    {% block user-image %} 
+                    {% block post-owner-image %} 
                     <img src="{% static 'imgs/male-user.jpg' %}" alt="">
-                    {% endblock user-image %}
+                    {% endblock post-owner-image %}
 
-                    {% block user-name %}
+                    {% block post-owner-name %}
                     <h5>User Name</h5>
-                    {% endblock user-name %}
+                    {% endblock post-owner-name %}
                 </div>
 
                 <div class="c-v-space">

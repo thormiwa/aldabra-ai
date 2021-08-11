@@ -1,4 +1,4 @@
-## common
+# common
 from django.contrib import messages
 from django.shortcuts import (
     redirect,
@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import (
 )
 from django.utils.text import slugify
 
-## Models
+# Models
 
 # doctor models
 from accounts.models import (
@@ -30,7 +30,7 @@ from hospitals.models import (
 from frontend.forms.onboarding import DoctorVerificationForm
 
 
-## set residential hospital and verify ID
+# set residential hospital and verify ID
 @login_required
 def onboarding(request):
 
@@ -38,7 +38,7 @@ def onboarding(request):
     context = {
     }
     template_name = ''
-    
+
     if user.is_doctor:
         template_name = 'onboarding/doctor_onboarding.html'
         if request.method == 'POST':
@@ -49,32 +49,34 @@ def onboarding(request):
                 # get validated data
                 data = {
                     'id': verification_form.cleaned_data['doctor_id'],
-                    'residing_hospital': verification_form.cleaned_data['residing_hospital'] 
+                    'residing_hospital': verification_form.cleaned_data['residing_hospital']
                 }
                 try:
                     # check id and hospital existence
-                    id = DoctorID.objects.get(name=user.full_name,doctor_id=data['id'], hospital=data['residing_hospital'])
+                    id = DoctorID.objects.get(
+                        name=user.full_name, doctor_id=data['id'], hospital=data['residing_hospital'])
                     if id:
                         doctor = Doctor.objects.create(
                             full_name=user.full_name,
-                            doctor_id=data['id'], 
+                            doctor_id=data['id'],
                             residing_hospital=data['residing_hospital'],
                             owner=user,
                             slug=f"{'Dr_' + slugify(user.full_name)}")
                         doctor.save()
                         return redirect('frontend:dashboard')
                 except DoctorID.DoesNotExist:
-                    messages.error(request, "does not match any Doctor ID or name, hospital to an ID, please contact your hospital admin")
+                    messages.error(
+                        request, "does not match any Doctor ID or name, hospital to an ID, please contact your hospital admin")
                     context['verification_form'] = verification_form
 
-            else:   
+            else:
                 context['verification_form'] = verification_form
-            
+
         else:
             verification_form = DoctorVerificationForm()
             context['verification_form'] = verification_form
 
     elif user.is_patient:
-        template_name = 'onboarding/patient_onboarding.html'
+        return redirect('frontend:patient_create_view')
 
     return render(request, template_name, context)

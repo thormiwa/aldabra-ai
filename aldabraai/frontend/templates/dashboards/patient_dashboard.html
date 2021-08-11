@@ -3,6 +3,12 @@
 
 <link rel="stylesheet" href="{% static 'css/screensize.css' %}">
 
+{% if patient.profile_picture %}
+{% block user-image %}
+    <img src="{{ patient.profile_picture.url }}" alt="">
+{% endblock user-image %}
+{% endif %}
+
 {% block right-dashboard %}
         <aside class='right-s-dashboard sd-box'>
             {% block appointment-table %}

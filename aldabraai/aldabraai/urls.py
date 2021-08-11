@@ -8,7 +8,10 @@ from django.urls import (
     include
 )
 
-app_name = 'aldabra.ai'
+from django.conf import settings
+from django.conf.urls.static import static
+
+app_name = 'aldabra ai'
 
 ## API(s) entry points
 apis = [
@@ -22,8 +25,11 @@ apis = [
 urlpatterns = [
     # FRONTEND APP --> DONT PLAY WITH THIS OR WE LOSE OUR NICE DISPLAY 
     path('', include('frontend.urls', namespace='frontend')),
-    # API ENTRY version one --> DONT PLAY WITH THIS OR WE LOSE DATA
+    # API ENTRY version one --> DON'T PLAY WITH THIS OR WE LOSE DATA
     path('api/v1/', include(apis)),
     path('admin/', admin.site.urls),
+    # AUTHENTICATION LAYER --> DON'T PLAY WITH THIS OR USERS GET LOKCED OUT 
     path('auth/', include('auths.urls'))
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT)

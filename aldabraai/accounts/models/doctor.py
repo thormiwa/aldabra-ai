@@ -1,11 +1,11 @@
 from django.db import models
 from django.conf import settings
-from django.db.models.expressions import F
 from hospitals.models import Hospital
 from django.shortcuts import reverse
 
 
 class Doctor(models.Model):
+    profile_picture = models.ImageField('Profile Picture', width_field=120, height_field=80, blank=True)
     full_name = models.CharField(max_length=300, blank=True)
     doctor_id = models.CharField('Doctors ID', max_length=10, unique=True)
     residing_hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)

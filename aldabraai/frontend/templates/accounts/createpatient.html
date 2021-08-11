@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block container %}
+
+<form class='' action="{% url 'frontend:patient_create_view' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input class='form-control' type='submit' value='create'>
+</form>
+
+{% endblock container %}

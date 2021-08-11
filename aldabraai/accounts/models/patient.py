@@ -5,12 +5,12 @@ from django.shortcuts import reverse
 
 class Patient(models.Model):
     owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='patient_profile', on_delete=models.CASCADE)
-    #profile_picture = models.ImageField('Profile Picture') 
+    profile_picture = models.ImageField('Profile Picture', upload_to='uploads/imgs/dps/', blank=True) 
     full_name = models.CharField('Full Name', max_length=150, blank=True)
     home_address = models.CharField('Home Address', max_length=200, blank=True)
-    city = models.CharField(max_length=200)
-    country = models.CharField(max_length=200)
-    phone = models.CharField('Phone Number', max_length=20)
+    city = models.CharField(max_length=200, blank=True)
+    country = models.CharField(max_length=200, blank=True)
+    phone = models.CharField('Phone Number', max_length=20, blank=True)
     family_or_emerg_phone = models.CharField('Family or Emergency Phone Number',max_length=20, blank=True)
     slug = models.SlugField(unique=True)
 
@@ -23,10 +23,7 @@ class Patient(models.Model):
 
     def get_absolute_url(self):
         return reverse('accounts:patient-detail', kwargs={
-                                                        'slug': self.slug,
-                                                        'pk': self.pk
+                                                        'slug': self.slug
                                                         }
             )
 
-    def set_slug_as_username(self, username):
-        self.slug = username

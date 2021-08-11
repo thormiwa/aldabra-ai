@@ -23,7 +23,7 @@ class DoctorVerificationForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
         """
-        specify styles
+        specify class name
         """
 
         super(DoctorVerificationForm, self).__init__(*args, **kwargs)
