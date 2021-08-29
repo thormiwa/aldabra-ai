@@ -1,0 +1,3 @@
+[submodule "aldabra-react"]
+    path = aldabra-react
+    url = https://github.com/aldabra-ai/aldabra-react

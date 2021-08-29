@@ -1,9 +1,5 @@
 django >= 3.0.0
-django-markup
 Pillow
-pygments
-django-filter
-django-bleach
 httpie
 django-oauth-toolkit
 django-cors-middleware
@@ -12,8 +8,7 @@ cryptography
 djangorestframework >=3.10.3
 django-cors-headers >=3.1.1
 drf-jwt >=1.13.3
-pyjwt 
-requests
+pyjwt
 djongo
 sqlparse==0.2.4
 dnspython

@@ -23,7 +23,7 @@ doctor_settings_urls = [
 ]
 
 settings_urls = [
-    path('patient/', include(patient_urls)),
+    path('patient/', include(patient_settings_urls)),
     path('doctor/', include(doctor_settings_urls))
 ]
 
@@ -32,5 +32,5 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('onboarding/', onboarding, name='onboarding'),
     path('settings/', include(settings_urls)),
-    path('patient/', include),
+    #path('patient/', include),
 ]

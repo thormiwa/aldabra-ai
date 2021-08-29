@@ -165,3 +165,7 @@ node_modules
 # Local History for Visual Studio Code
 .history/
 secret.json
+
+
+# React/Node
+aldabra-react/node_modules/
