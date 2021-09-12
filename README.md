@@ -8,7 +8,7 @@
 - set your project root path: by exporting "PROJECT_ROOT=/FULL_PATH/" as an environmental
   variable (best to add to your venv activate script)
 
-- add robot-arm startup script to PATH:
+- add robot-arm startup script folder directory to PATH:
   ```
   export PATH=$PATH:/FULL_PATH/TO/startup_script/
   ```
