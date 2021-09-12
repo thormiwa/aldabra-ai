@@ -22,8 +22,8 @@ robot-arm
 ## make migrations and migrate data models
 the followign command carries out desires task
 ```
-*makemigrations* -> to make migrations
-*migrate* -> to migrate database tables
+makemigrations -> to make migrations
+migrate -> to migrate database tables
 
 ```
 for more info of commands to run in django a app visit: djangoproject.org
