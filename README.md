@@ -1,53 +1,36 @@
 # Aldabra
 
-## Virtual environment setup
-  ## For Windows  
-  
-  cd into **.\cli-scripts** in project root and run:
-  **assuming you have python3 installed on your system**
-  ````
-  .\envset.ps1
-  ````
-  
-  to activate environment run:
-  ````
-  .\envactive.ps1
-  ````
-  deactive environment using
-  ````
-  deactive
-  ````
-  
-  ## For Linux(Ubuntu)
+## Running managegment scripts
+
+ ``
+ The script robot-arm provides an easy way to run commands such as django managegment
+ commands and more cli tools such as git interactivetly... To set it up
+ ``
+- set your project root path: by exporting "PROJECT_ROOT=/FULL_PATH/" as an environmental
+  variable (best to add to your venv activate script)
+
+- add robot-arm startup script to PATH:
   ```
-    ./envset
+  export PATH=$PATH:/FULL_PATH/TO/startup_script/
   ```
- ## Database setup
-  ## Windows
-  Run following scripts in admin windows **powershell**
-  
-  In .\cli-scripts run:
-  ````
-  .\dbset.ps1
-  ````
-  
-  run migration to see if db is correctly installed
-  ````
-  .\migration.ps1
-  ````
-  
+
+## Running The arm
+After the above setup, run...
+```
+robot-arm
+```
+
+## make migrations and migrate data models
+```
+makemigrations: to make migrations
+migrate: to migrate database tables
+
+for more info of commands to run in django a app visit: djangoproject.org
+```
+
 ## start dev server
-  ## Windows
-  in **.\cli-scripts** run:
   ````
-  .\runserver.ps1
-  ````
-  
-  ## Linux(Ubuntu)
-  ````
-  ./runserver
+  runserver: to start developement server
   ````
 
 **Happy Hacking (o_o)**
-   
-   
