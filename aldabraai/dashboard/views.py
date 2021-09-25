@@ -1,6 +1,5 @@
 # django generic view classes
 from django.views.generic import TemplateView
-
 ## models
 from appointments.models import (
     Appointment
@@ -10,14 +9,12 @@ from auths.models import User
 from accounts.models import (
     Patient,
     Doctor
-) 
-
+)
 # decorators
 from django.contrib.auth.decorators import (
     login_required,
     permission_required
 )
-
 # helper/shortcut functions
 from django.shortcuts import (
     get_object_or_404,
@@ -35,16 +32,15 @@ def dashboard(request):
         context = {
             'user': user,
             'patient': Patient.objects.get(owner=user),
-            'latest_appointments': Appointment.booked_appointments.filter(patient=user) 
+            'latest_appointments': Appointment.booked_appointments.filter(patient=user)
         }
 
     elif user.is_doctor:
         template_name = 'dashboards/doctor_dashboard.html'
-        
+
         context = {
             'user': user,
             'doctor': Doctor.objects.get(owner=user)
         }
-        
-    return render(request, template_name, context)
 
+    return render(request, template_name, context)

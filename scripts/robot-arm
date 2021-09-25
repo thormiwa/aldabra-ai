@@ -41,4 +41,5 @@ def arm(exe=exe_cmd, args=args):
         except SystemError:
             return SystemError
 
-arm()
+if __name__ == "__main__":
+    arm()

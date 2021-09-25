@@ -1,0 +1,38 @@
+Hi!
+
+At aldabra our goal is to optimize and simlify healthcare system in africa
+by using the best tech and open source AI solutions out there...
+
+our first solution is to release a SaaS platform that reduces repetitivet tasks
+and Improves hospital efficiency, this would be achieved by
+
+- providing an easy way for patients to search for doctors and healthcare facilities and
+clinics that best suits thier needs
+
+- as well as book appointments easily with thoes facilities
+
+- our platform would also simplify the way doctors interact with their patients by
+providing an easy appointment management system, a dashboard to see patients health
+details like graphs, medical records etc...
+
+- our platform would also enable hospitals, find patient medical records and history
+in the most efficient way possible
+
+- we'd also including a virtual ticketing system that would enable patients queue
+online for a certain time before heading to the hospital for thier appointments, we
+believe that this would reduce the spread of the covid 19 virus
+
+- patients would also be able to manage thier appointments and get to manage their
+medical data like, uploading their medical records if available or requesting it practicing
+from their healthcare provider if registered with aldabra
+
+- hospitals should be able to manage hospital activities like easy registeration
+and onboarding of new patients, managing and viewing doctor appointments,
+managing available rooms etc an all round management system from a simplified
+dashboard
+
+- and finally for our MVP we would also focus on reducing mental health issues
+by providing an easy video conferencing call with doctors when in need,
+integrating daily mental wellness routings, and a feed for mental health and healthy
+content that would see accurate and healthy content from verified healthcare facilities and
+practioners published.

@@ -3,34 +3,19 @@ from django.urls import (
     include
 )
 
-# Frontend Views
+# Frontend default Views
 from .views import (
-    home, 
-    dashboard,
+    home,
     onboarding,
-    PatientCreateView,
-    PatientUpdateView
 )
 
 app_name = 'frontend app'
 
-patient_settings_urls = [
-    path('profile/', PatientUpdateView.as_view(), name='patient_update_view')
-]
-
-doctor_settings_urls = [
-
-]
-
-settings_urls = [
-    path('patient/', include(patient_settings_urls)),
-    path('doctor/', include(doctor_settings_urls))
-]
-
 urlpatterns = [
     path('', home, name='home'),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('accounts/', include("accounts.urls"), name='accounts'),
+    path('dashboard/', include("dashboard.urls"), name='dashboard'),
     path('onboarding/', onboarding, name='onboarding'),
-    path('settings/', include(settings_urls)),
+    path('settings/', include("user_settings.urls"), name='settings'),
     #path('patient/', include),
 ]

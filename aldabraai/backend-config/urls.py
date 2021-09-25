@@ -18,17 +18,18 @@ apis = [
     path('base/', include('base.urls')),
     path('appointments/', include('appointments.urls', namespace='appointments')),
     path('hospitals/', include('hospitals.urls', namespace='hospitals')),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('accounts/', include('accounts.urls')),
     path('auth/', include('auths.urls')),
+    path('settings/', include('user_settings.urls', namespace='settings'))
 ]
 
 urlpatterns = [
-    # FRONTEND APP --> DONT PLAY WITH THIS OR WE LOSE OUR NICE DISPLAY 
+    # FRONTEND APP --> DONT PLAY WITH THIS OR WE LOSE OUR NICE DISPLAY
     path('', include('frontend.urls', namespace='frontend')),
     # API ENTRY version one --> DON'T PLAY WITH THIS OR WE LOSE DATA
     path('api/v1/', include(apis)),
     path('admin/', admin.site.urls),
-    # AUTHENTICATION LAYER --> DON'T PLAY WITH THIS OR USERS GET LOKCED OUT 
+    # AUTHENTICATION LAYER --> DON'T PLAY WITH THIS OR USERS GET LOKCED OUT
     path('auth/', include('auths.urls'))
 ]
 

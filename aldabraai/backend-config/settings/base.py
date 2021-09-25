@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    ## OWN APP(s) 
+    ## OWN APP(s)
     # AUTHENTIFICATION
     'auths.apps.AuthsConfig',
 
@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'mhealth.apps.MhealthConfig',
     'search.apps.SearchConfig',
 
-    # FRONT END
+    # SETTINGS APP/API
+    'user_settings',
+
+    # TEMPORARY FRONT END
     'frontend.apps.FrontendConfig',
 
     ## THIRD PARTY APPS
@@ -87,7 +90,7 @@ CORS_ORIGIN_WHITELIST = (
 AUTH_USER_MODEL = 'auths.User'
 
 ## ROOT URL
-ROOT_URLCONF = 'aldabraai.urls'
+ROOT_URLCONF = 'backend-config.urls'
 
 TEMPLATES = [
     {
@@ -105,7 +108,8 @@ TEMPLATES = [
     },
 ]
 \
-WSGI_APPLICATION = 'aldabraai.wsgi.application'
+WSGI_APPLICATION = 'backend-config.wsgi.application'
+ASGI_APPLICATION = 'backend-config.asgi.application'
 
 
 # Database
@@ -117,7 +121,7 @@ DATABASES = {
     # 'dev-fallback': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },   
+    # },
 }
 
 
@@ -179,7 +183,7 @@ EMAIL_HOST_PASSWORD = '******'
 
 REST_FRAMEWORK = {
 
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json', 
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         #'knox.auth.TokenAuthentication',
@@ -273,14 +277,14 @@ BOOTSTRAP5 = {
 # Format string for displaying run time timestamps in the Django admin site. The default
 # just adds seconds to the standard Django format, which is useful for displaying the timestamps
 # for jobs that are scheduled to run on intervals of less than one minute.
-# 
+#
 # See https://docs.djangoproject.com/en/dev/ref/settings/#datetime-format for format string
 # syntax details.
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 
 # Maximum run time allowed for jobs that are triggered manually via the Django admin site, which
 # prevents admin site HTTP requests from timing out.
-# 
+#
 # Longer running jobs should probably be handed over to a background task processing library
 # that supports multiple background worker processes instead (e.g. Dramatiq, Celery, Django-RQ,
 # etc. See: https://djangopackages.org/grids/g/workers-queues-tasks/ for popular options).

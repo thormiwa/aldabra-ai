@@ -12,18 +12,18 @@ DEBUG = True
 
 # SECURITY WARNING: update this when you have the production host
 ALLOWED_HOSTS = [
-    #'0.0.0.0', 
+    #'0.0.0.0',
+    'testserver',
     '127.0.0.1',
     'localhost',
-    'aldabraai',
     ]
 
 DATABASES = {
 
     ### PROPOSED LOCAL DATABASE
     ### COMMENT OUT PREFERED CHOICE
-    ### AND INPUT REQUIRED CHOICE  
-    
+    ### AND INPUT REQUIRED CHOICE
+
     ## MySQL
 
     # 'default': {
@@ -72,13 +72,10 @@ MEDIA_URL = '/media/'
 ## EMAIL SERVICES
 SERVER_EMAIL = 'amidbidee@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True 
+EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_PASSWORD = get_variable_or_secrete('EMAIL_PASSWORD', limit_to_secret=True)
-EMAIL_HOST_USER = SERVER_EMAIL 
-EMAIL_PORT = 587 
+EMAIL_HOST_USER = SERVER_EMAIL
+EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
- 
-
-

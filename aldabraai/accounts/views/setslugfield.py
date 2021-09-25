@@ -1,4 +1,4 @@
-from .models import Patient
+from accounts.models import Patient
 from django.shortcuts import redirect, get_object_or_404
 
 

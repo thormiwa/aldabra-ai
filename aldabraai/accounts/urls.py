@@ -3,22 +3,22 @@ from rest_framework import routers
 
 ## COMMON
 from django.urls import (
-    path, 
+    path,
     include
     )
 
 ## API CLASSES
 from .api import (
     #### Patient's
-    PatientProfileAPIView, 
-    PatientBankDetailAPI, 
-    PatientInsuranceDetailAPI, 
+    PatientProfileAPIView,
+    PatientBankDetailAPI,
+    PatientInsuranceDetailAPI,
     DoctorReviewAPI,
     ReviewDoctorAPI,
 
     #### Doctor's
-    DoctorProfileAPIView, 
-    DoctorQualificationAPI, 
+    DoctorProfileAPIView,
+    DoctorQualificationAPI,
     DoctorSpecializationAPI,
 
 )
@@ -41,7 +41,7 @@ router.register('doctors/doctor-qualifications', DoctorQualificationAPI, basenam
 
 urlpatterns = [
     path('doctors/review/<slug>/', ReviewDoctorAPI.as_view(), name='review_doctor'),
-    path('set-profile-slug/', setProfileSlug, name='set-profile-slug'),
+    #path('set-profile-slug/', setProfileSlug, name='set-profile-slug'),
 ]
 
 urlpatterns += router.urls

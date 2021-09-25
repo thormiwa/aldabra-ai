@@ -43,7 +43,7 @@ from frontend.forms.accounts import (
 class PatientDetailView():
     pass
 
-# PATIENT PROFILE CREATION VIEW  
+# PATIENT PROFILE CREATION VIEW
 class PatientCreateView(LoginRequiredMixin, CreateView):
     model = Patient
     form_class = PatientCreationForm
@@ -57,14 +57,14 @@ class PatientCreateView(LoginRequiredMixin, CreateView):
         form.instance.slug = slugify(user.full_name)
         return super().form_valid(form)
 
-# PATIENT PROFILE EDITION VIEW 
+# PATIENT PROFILE EDITION VIEW
 class PatientUpdateView(LoginRequiredMixin, UpdateView):
     model = Patient
     form_class = PatientCreationForm
     template_name = '/accounts/patientupdate_form.html'
     success_url = '/dashboard/'
 
-    def get_object(self):   # GET USER PATIENT ACCOUNT 
+    def get_object(self):   # GET USER PATIENT ACCOUNT
         user = self.request.user
         slug = self.kwargs['slug']  # USE SLUG FROM URL(USER)
         obj = get_object_or_404(Patient, slug=slug, owner=user)
